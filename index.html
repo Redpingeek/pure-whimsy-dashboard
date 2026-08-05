@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pure Whimsy: Project Command Center</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%8C%99%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ground:#eef1ef; --card:#fbfcfb; --ink:#232a2b; --muted:#697471;
+    --primary:#356169; --primary-soft:#e1ecec; --silver:#c6d0cd; --gold:#b08d57;
+    --gold-soft:#f2e9db; --done:#3f7079; --line:#dfe5e2;
+    --shadow:0 1px 2px rgba(35,42,43,.04),0 8px 26px rgba(35,42,43,.06);
+    --serif:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
+    --sans:'Nunito Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#131817; --card:#1a201f; --ink:#e9edeb; --muted:#98a29e;
+      --primary:#84b7bb; --primary-soft:#1c2827; --silver:#39423f; --gold:#cba36a;
+      --gold-soft:#28221610; --done:#84b7bb; --line:#28302e;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.38);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1ef; --card:#fbfcfb; --ink:#232a2b; --muted:#697471;
+    --primary:#356169; --primary-soft:#e1ecec; --silver:#c6d0cd; --gold:#b08d57;
+    --gold-soft:#f2e9db; --done:#3f7079; --line:#dfe5e2;
+  }
+  :root[data-theme="dark"]{
+    --ground:#131817; --card:#1a201f; --ink:#e9edeb; --muted:#98a29e;
+    --primary:#84b7bb; --primary-soft:#1c2827; --silver:#39423f; --gold:#cba36a;
+    --gold-soft:#2822161a; --done:#84b7bb; --line:#28302e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+    line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 72px;}
+  a{color:var(--primary);}
+
+  .masthead{background:linear-gradient(135deg,#356169,#2b5058);color:#f3f7f6;
+    border-radius:0 0 20px 20px;padding:36px 30px 30px;margin-bottom:26px;position:relative;overflow:hidden;}
+  .masthead::after{content:"✦";position:absolute;right:26px;top:20px;font-size:60px;
+    color:rgba(243,247,246,.10);line-height:1;}
+  .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:rgba(243,247,246,.72);margin:0 0 12px;}
+  .masthead h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.6vw,44px);
+    margin:0;line-height:1.05;letter-spacing:.01em;text-wrap:balance;}
+  .masthead .sub{margin:9px 0 18px;color:rgba(243,247,246,.86);font-size:15px;font-style:italic;}
+  .status{display:inline-flex;align-items:center;gap:8px;background:rgba(243,247,246,.14);
+    border:1px solid rgba(243,247,246,.28);color:#f3f7f6;padding:6px 13px;border-radius:100px;
+    font-size:12.5px;letter-spacing:.04em;}
+  .dot{width:8px;height:8px;border-radius:50%;background:#9ad9c8;box-shadow:0 0 0 4px rgba(154,217,200,.22);}
+
+  section{margin:30px 0;}
+  .label{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--primary);
+    font-weight:700;margin:0 0 14px;display:flex;align-items:center;gap:10px;}
+  .label::before{content:"✦";font-size:12px;}
+  .label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);}
+
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .milestone{padding:18px;}
+  .m-ico{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;margin-bottom:11px;}
+  .m-done .m-ico{background:var(--primary);color:#f3f7f6;}
+  .m-next .m-ico{background:transparent;border:2px dashed var(--silver);color:var(--muted);}
+  .m-date{font-size:12px;color:var(--muted);letter-spacing:.03em;}
+  .m-title{font-family:var(--serif);font-weight:600;font-size:20px;margin:2px 0 4px;}
+  .m-note{font-size:13px;color:var(--muted);}
+  .m-tag{display:inline-block;margin-top:9px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;}
+  .m-done .m-tag{background:var(--primary-soft);color:var(--primary);}
+  .m-next .m-tag{background:var(--gold-soft);color:var(--gold);}
+
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .metric{padding:18px 14px;text-align:center;}
+  .metric .n{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1;color:var(--primary);
+    font-variant-numeric:tabular-nums;}
+  .metric .k{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em;}
+
+  .panel{padding:6px 4px;}
+  .row{display:flex;gap:12px;padding:13px 16px;align-items:flex-start;}
+  .row + .row{border-top:1px solid var(--line);}
+  .check{flex:none;width:20px;height:20px;border-radius:50%;background:var(--primary);color:#f3f7f6;
+    display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px;}
+  .row b{font-weight:700;}
+  .row .s{color:var(--muted);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .chip{font-size:12px;background:var(--primary-soft);color:var(--primary);border-radius:100px;padding:3px 10px;}
+
+  .progress-head{display:flex;justify-content:space-between;align-items:baseline;padding:16px 18px 4px;gap:12px;flex-wrap:wrap;}
+  .progress-head .t{font-family:var(--serif);font-weight:600;font-size:20px;}
+  .progress-head .c{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .bar{height:7px;background:var(--primary-soft);border-radius:100px;margin:10px 18px 6px;overflow:hidden;}
+  .bar > i{display:block;height:100%;width:0;background:var(--primary);border-radius:100px;transition:width .35s ease;}
+  .item{display:flex;gap:12px;align-items:flex-start;padding:12px 8px;border-top:1px solid var(--line);cursor:pointer;}
+  .item input{appearance:none;-webkit-appearance:none;flex:none;width:19px;height:19px;margin:2px 0 0;
+    border:1.5px solid var(--silver);border-radius:5px;background:var(--card);cursor:pointer;position:relative;transition:.15s;}
+  .item input:checked{background:var(--primary);border-color:var(--primary);}
+  .item input:checked::after{content:"✓";position:absolute;inset:0;color:#f3f7f6;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .item:hover input{border-color:var(--primary);}
+  .item .txt{font-size:14.5px;}
+  .item .txt b{font-weight:700;}
+  .item .txt .d{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+  .item.checked .txt{text-decoration:line-through;text-decoration-color:var(--silver);color:var(--muted);}
+  .lead{padding:2px 18px 8px;margin:0;font-size:13px;color:var(--muted);}
+
+  .cite-head{padding:18px 18px 4px;}
+  .cite-head .big{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--ink);line-height:1.25;}
+  .cite-head .big em{color:var(--primary);font-style:italic;}
+  .mtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px;}
+  .mtable th,.mtable td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);}
+  .mtable th{font-family:var(--serif);font-weight:600;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+  .mtable td:first-child{color:var(--muted);}
+  .mtable td.v{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .mtable td.pending{color:var(--gold);font-style:italic;font-size:13px;}
+  .watch{padding:14px 18px 4px;}
+  .watch p{margin:0 0 6px;font-size:13.5px;color:var(--muted);}
+  .watch ul{margin:6px 0 2px;padding-left:20px;font-size:14px;}
+  .watch li{margin:5px 0;}
+  .note{padding:12px 18px 16px;font-size:12.5px;color:var(--muted);font-style:italic;}
+
+  .foot{text-align:center;margin-top:40px;color:var(--muted);font-size:12.5px;}
+  .foot .rp{font-family:var(--serif);font-weight:600;color:var(--primary);font-size:15px;}
+
+  @media (max-width:640px){
+    .timeline{grid-template-columns:1fr;} .metrics{grid-template-columns:repeat(2,1fr);}
+    .masthead{padding:28px 20px;}
+  }
+</style>
+
+<div class="masthead">
+  <p class="eyebrow">Red Pin Geek &nbsp;·&nbsp; Project Command Center</p>
+  <h1>Pure Whimsy Jewelry</h1>
+  <p class="sub">Search and AI visibility, built around your talismans &nbsp;·&nbsp; for Rina</p>
+  <span class="status"><span class="dot"></span> Live &nbsp;·&nbsp; 10 pages + 6 pillars optimized</span>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <p class="label">Timeline</p>
+    <div class="timeline">
+      <div class="card milestone m-done">
+        <div class="m-ico">✓</div>
+        <div class="m-date">July 2026</div>
+        <div class="m-title">Launch</div>
+        <div class="m-note">10 product pages and 6 collection pillars optimized and live.</div>
+        <span class="m-tag">Complete</span>
+      </div>
+      <div class="card milestone m-done">
+        <div class="m-ico">✓</div>
+        <div class="m-date">July 2026</div>
+        <div class="m-title">Baselines captured</div>
+        <div class="m-note">AI citations and Google Search Console, both now tracking your visibility.</div>
+        <span class="m-tag">Complete</span>
+      </div>
+      <div class="card milestone m-next">
+        <div class="m-ico">○</div>
+        <div class="m-date">around late August</div>
+        <div class="m-title">First monthly sweep</div>
+        <div class="m-note">Re-measure citations and read the lift against the baseline.</div>
+        <span class="m-tag">Upcoming</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">At a glance</p>
+    <div class="metrics">
+      <div class="card metric"><div class="n">10</div><div class="k">Product pages optimized</div></div>
+      <div class="card metric"><div class="n">6</div><div class="k">Collection pillars built</div></div>
+      <div class="card metric"><div class="n">4</div><div class="k">Content layers per page</div></div>
+      <div class="card metric"><div class="n">2</div><div class="k">Ways we track your visibility</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What is complete</p>
+    <div class="card">
+      <div class="panel">
+        <div class="row"><span class="check">✓</span><div><b>10 product pages optimized and live.</b> <span class="s">Each rewritten in your talisman voice, with a comparison table, buyer questions answered on the page, and structured data (FAQ and breadcrumb) so Google and AI assistants can read and recommend them. Clean meta on every page.</span>
+        <div class="chips"><span class="chip">Daisy</span><span class="chip">Forget-Me-Not</span><span class="chip">Mountain Bear</span><span class="chip">Wave Stacking Rings</span><span class="chip">Ginkgo</span><span class="chip">Hummingbird</span><span class="chip">Moon Face</span><span class="chip">Swirling Ocean Wave</span><span class="chip">Dragonfly</span><span class="chip">Bold Leaf</span></div>
+        </div></div>
+        <div class="row"><span class="check">✓</span><div><b>6 collection pillars built.</b> <span class="s">Crawlable, editorial pillar pages over your core collections, so each theme has a page that search and AI can find and cite.</span>
+        <div class="chips"><span class="chip">Enamel</span><span class="chip">Fauna</span><span class="chip">Flora</span><span class="chip">Mountain</span><span class="chip">Ocean</span><span class="chip">Stars &amp; Moon</span></div>
+        </div></div>
+        <div class="row"><span class="check">✓</span><div><b>Reusable schema plumbing installed.</b> <span class="s">A one-time setup on your product template means every new page you build inherits the same FAQ and breadcrumb structured data automatically, with no developer. Your 10 pages are the reference model for rolling this across the rest of your catalog.</span></div></div>
+        <div class="row"><span class="check">✓</span><div><b>Written true to Pure Whimsy.</b> <span class="s">Talisman framing and the meaning behind each motif, exact metals named (fine and Argentium sterling silver), gemstone meanings kept as belief rather than stated as fact, and your Judge.me review stars left intact.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What we are tracking</p>
+    <div class="card">
+      <div class="cite-head">
+        <div class="big">Two instruments now watch your visibility, and one of your optimized pages is <em>already cited by AI</em>.</div>
+      </div>
+      <p class="lead" style="padding-top:2px;"><strong>1. AI citations</strong>, measured across leading assistants (Perplexity, Gemini) each month.</p>
+      <table class="mtable">
+        <tr><th>AI citation signal</th><th>Day 0 &middot; July</th><th>Late Aug</th></tr>
+        <tr><td>Optimized product page cited (Wave Stacking Rings)</td><td class="v">Yes</td><td class="pending">pending</td></tr>
+        <tr><td>Collection pillars cited</td><td class="v">Mountain firm, Ocean &amp; Flora emerging</td><td class="pending">pending</td></tr>
+        <tr><td>Brand searches cited (Rina Luban, Pure Whimsy)</td><td class="v">Yes</td><td class="pending">pending</td></tr>
+      </table>
+      <p class="lead" style="padding-top:12px;"><strong>2. Google Search Console</strong>, now live, showing real demand and where you rank.</p>
+      <table class="mtable">
+        <tr><th>Search signal</th><th>Day 0 &middot; July</th><th>Late Aug</th></tr>
+        <tr><td>Ocean theme monthly impressions</td><td class="v">547</td><td class="pending">pending</td></tr>
+        <tr><td>Mountain pillar rank (closest to page one)</td><td class="v">~10 to 15</td><td class="pending">pending</td></tr>
+      </table>
+      <div class="watch">
+        <p><strong>The read at Day 0:</strong> demand for your themes is real, and your new pillar pages are ranking low with clear room to climb. Mountain is your strongest signal in both instruments, exactly where the work landed first. Your how-to blog posts currently earn the most search traffic, so they are a ready source of momentum to send to the new pages.</p>
+        <p><strong>What we are working toward at the late-August re-check:</strong></p>
+        <ul>
+          <li>Your pillar pages climbing in the rankings on their theme terms.</li>
+          <li>Clicks starting to appear on those theme searches.</li>
+          <li>More of your buyer questions returning a Pure Whimsy citation in AI answers.</li>
+        </ul>
+      </div>
+      <div class="note">We measure the trend and compare against your untouched pages, so any lift reads as the work rather than the season. Some month-to-month variance is normal.</div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Your next moves</p>
+    <div class="card">
+      <div class="progress-head">
+        <span class="t">At your pace, nothing blocking</span>
+        <span class="c" id="counter">0 of 3 done</span>
+      </div>
+      <div class="bar"><i id="fill"></i></div>
+      <p class="lead">These grow the work we have already done. Check them off as you go; your progress saves on this device.</p>
+      <label class="item"><input type="checkbox" data-id="n1"><span class="txt"><b>Tidy the catalog</b><span class="d">Even out the product types ("Rings" and "rings," "bracelet") and prune the empty or duplicate collections, so your filters and collections read cleanly for shoppers and for search.</span></span></label>
+      <label class="item"><input type="checkbox" data-id="n2"><span class="txt"><b>Roll the model across your line</b><span class="d">Use your 10 optimized pages as the reference to update the rest of your catalog at your pace. The schema plumbing is already installed, so every new page inherits the structured data automatically.</span></span></label>
+      <label class="item"><input type="checkbox" data-id="n3"><span class="txt"><b>Point your popular guides at the new pillars</b><span class="d">Your how-to posts already earn the most search traffic. A link from each guide to its matching collection pillar sends that momentum to the pages we built.</span></span></label>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="rp">Red Pin Geek</div>
+    Baselines captured July 2026 &nbsp;·&nbsp; next update around late August
+  </div>
+</div>
+
+<script>
+  (function(){
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));
+    var counter = document.getElementById('counter'), fill = document.getElementById('fill');
+    var KEY = 'pw-cmd-v1-';
+    function refresh(){
+      var done = 0;
+      boxes.forEach(function(b){ b.closest('.item').classList.toggle('checked', b.checked); if(b.checked) done++; });
+      counter.textContent = done + ' of ' + boxes.length + ' done';
+      fill.style.width = (boxes.length ? (done/boxes.length*100) : 0) + '%';
+    }
+    boxes.forEach(function(b){
+      var id = KEY + b.getAttribute('data-id');
+      try { if(localStorage.getItem(id) === '1') b.checked = true; } catch(e){}
+      b.addEventListener('change', function(){ try { localStorage.setItem(id, b.checked?'1':'0'); } catch(e){} refresh(); });
+    });
+    refresh();
+  })();
+</script>
+
+</body>
+</html>
