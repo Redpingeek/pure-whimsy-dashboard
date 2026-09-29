@@ -63,7 +63,7 @@
   .label::after{content:"";height:1px;flex:1;background:var(--line);}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);}
 
-  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;}
   .milestone{padding:18px;}
   .m-ico{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:700;margin-bottom:11px;}
@@ -138,7 +138,7 @@
   <p class="eyebrow">Red Pin Geek &nbsp;·&nbsp; Project Command Center</p>
   <h1>Pure Whimsy Jewelry</h1>
   <p class="sub">Search and AI visibility, built around your talismans &nbsp;·&nbsp; for Rina</p>
-  <span class="status"><span class="dot"></span> Live &nbsp;·&nbsp; first monthly check-in done</span>
+  <span class="status"><span class="dot"></span> Live &nbsp;·&nbsp; September check-in done</span>
 </div>
 
 <div class="wrap">
@@ -164,8 +164,22 @@
         <div class="m-ico">✓</div>
         <div class="m-date">18 August 2026</div>
         <div class="m-title">First monthly check-in</div>
-        <div class="m-note">Measured again and compared with July. Your rewritten pages moved up. Untouched ones did not.</div>
+        <div class="m-note">Measured again and compared with July. Your rewritten pages moved up, and held when we checked again a week later.</div>
         <span class="m-tag">Complete</span>
+      </div>
+      <div class="card milestone m-done">
+        <div class="m-ico">✓</div>
+        <div class="m-date">September 2026</div>
+        <div class="m-title">Second check-in</div>
+        <div class="m-note">All six rewritten product pages named every time we asked. Your whole shop is rising, not only the pages we rewrote.</div>
+        <span class="m-tag">Complete</span>
+      </div>
+      <div class="card milestone m-next">
+        <div class="m-ico">&rarr;</div>
+        <div class="m-date">Late October 2026</div>
+        <div class="m-title">Next check-in</div>
+        <div class="m-note">A second like-for-like reading on your collection pages.</div>
+        <span class="m-tag">Upcoming</span>
       </div>
     </div>
   </section>
@@ -200,7 +214,7 @@
     <p class="label">What we are tracking</p>
     <div class="card">
       <div class="cite-head">
-        <div class="big">One month in, AI assistants recommend <em>more of your pages</em> than they did in July. And one page shows exactly where your next opportunity is.</div>
+        <div class="big">Two months in, AI assistants name <em>all six of your rewritten product pages</em>, every time we ask. And one of your own guides shows where the next opportunity is.</div>
       </div>
 
       <!-- FRAME:two-doors -->
@@ -217,31 +231,40 @@
 
       <p class="lead" style="padding-top:10px;"><strong>1. Door one: do AI assistants name you?</strong> Each month we ask assistants the same shopping questions a real customer would ask, then count how often Pure Whimsy comes back as an answer.</p>
       <table class="mtable">
-        <tr><th>&nbsp;</th><th>17 July</th><th>18 August</th></tr>
-        <tr><td>Shopping questions where an assistant named one of your rewritten pages</td><td class="v">2 of 6</td><td class="v">3 of 6</td></tr>
-        <tr><td>Did it name you every time we asked, or only some of the time?</td><td class="v">Some of the time</td><td class="v">Every time</td></tr>
-        <tr><td>The same kind of questions, asked about pages we did <em>not</em> rewrite</td><td class="v">1 of 5</td><td class="v">0 of 5</td></tr>
-        <tr><td>People searching for you by name</td><td class="v">Named</td><td class="v">Still named</td></tr>
+        <tr><th>&nbsp;</th><th>17 July</th><th>18 August</th><th>14 September</th></tr>
+        <tr><td>Shopping questions where an assistant named one of your rewritten pages</td><td class="v">2 of 6</td><td class="v">3 of 6</td><td class="v">6 of 6</td></tr>
+        <tr><td>Did it name you every time we asked, or only some of the time?</td><td class="v">Some of the time</td><td class="v">Every time</td><td class="v">Every time</td></tr>
+        <tr><td>The same kind of questions, asked about pages we did <em>not</em> rewrite</td><td class="v">1 of 5</td><td class="v">0 of 5, then 1 of 5 a week later</td><td class="v">4 of 5</td></tr>
+        <tr><td>People searching for you by name</td><td class="v">Named</td><td class="v">Still named</td><td class="v">Still named</td></tr>
       </table>
-      <div class="note" style="padding:10px 18px 2px;">That third row is the comparison, and it is the one that matters most. Those are pages we left alone. If they had climbed too, the time of year or plain luck would be the likelier explanation. They did not climb: 1 of 5 in July, 1 of 5 now. Your rewritten pages went from 2 to 3, and when we checked again a week later they were still 3, named every time we asked. Yours went up and stayed up. The ones we left alone stayed put. New this month: ask an assistant for an ocean wave ring and it now sends people to your <strong>Swirling Ocean Wave</strong> product page itself, not just the collection it sits in. That was the exact thing we set out to earn in July.</div>
+      <div class="note" style="padding:10px 18px 2px;">The big news this month: every one of your six rewritten pages is now named, every time we ask. In July it was two. The third row is the comparison, and it changed too. The pages we left alone climbed from 1 of 5 to 4 of 5. That means your whole shop is being named more, which is good news for you. It also means this comparison can no longer tell us how much of the rise came from the rewriting and how much from your shop growing overall, so we are not going to pretend it can. Still true from August: ask an assistant for an ocean wave ring and it sends people to your <strong>Swirling Ocean Wave</strong> product page itself.</div>
 
-      <p class="lead" style="padding-top:14px;"><strong>2. Door two: where do you sit in Google&rsquo;s list?</strong> Real people searching, and how far down you are. Covers 22 July to 18 August. The first three rows are the specific pages we are tracking, not your site as a whole. Your site overall earned 88 clicks from Google in these four weeks, on every one of the 28 days.</p>
+      <p class="lead" style="padding-top:14px;"><strong>Your six collection pages.</strong> The same idea, for your themes: we ask about each theme you have a collection page for, and about three themes you do not have one for, to compare.</p>
+      <table class="mtable">
+        <tr><th>&nbsp;</th><th>July</th><th>August</th><th>September</th></tr>
+        <tr><td>Themes where an assistant named one of your collection pages</td><td class="v">1 of 6</td><td class="v">3 of 6</td><td class="v">1 of 6</td></tr>
+        <tr><td>Themes you have no collection page for</td><td class="v">0 of 3</td><td class="v">0 of 3</td><td class="v">0 of 3</td></tr>
+      </table>
+      <div class="note" style="padding:10px 18px 2px;">An honest month here. Mountain was named every time, as it has been since July. Ocean and Stars &amp; Moon, named in August, were not named this time. One month is a direction, not a verdict, and October will show whether it holds. Two things did hold: the themes without a collection page are still never named, so when your themes do come up, it is the pages we built doing it. And Google&rsquo;s Gemini now names five of your six collection pages, and once put Pure Whimsy first in its list of shops for moon and stars jewelry.</div>
+
+      <p class="lead" style="padding-top:14px;"><strong>2. Door two: where do you sit in Google&rsquo;s list?</strong> Real people searching, and how far down you are. Covers the four weeks from 30 August to 26 September, with August&rsquo;s figure in brackets. The first three rows are the specific pages we are tracking, not your site as a whole. Your site overall earned 145 clicks from Google in these four weeks, up from 88 in August, on every one of the 28 days.</p>
       <table class="mtable">
         <tr><th>Page</th><th>Your spot</th><th>Listings</th><th>Clicks from Google</th></tr>
-        <tr><td>Mountain collection, on &ldquo;silver mountain jewelry&rdquo;</td><td class="v">12th</td><td class="v">105</td><td class="v">0</td></tr>
-        <tr><td>Ocean collection, on &ldquo;ocean jewelry&rdquo;</td><td class="v">63rd</td><td class="v">104</td><td class="v">0</td></tr>
-        <tr><td>Wave Stacking Rings product page</td><td class="v">29th</td><td class="v">241</td><td class="v">0</td></tr>
-        <tr><td><strong>Your whole site, for comparison</strong></td><td class="v">, </td><td class="v">11,543</td><td class="v">88</td></tr>
+        <tr><td>Mountain collection, on &ldquo;silver mountain jewelry&rdquo;</td><td class="v">12th (12th)</td><td class="v">56 (105)</td><td class="v">0 (0)</td></tr>
+        <tr><td>Ocean collection, on &ldquo;ocean jewelry&rdquo;</td><td class="v">59th (63rd)</td><td class="v">14 (104)</td><td class="v">0 (0)</td></tr>
+        <tr><td>Wave Stacking Rings product page</td><td class="v">33rd (29th)</td><td class="v">256 (241)</td><td class="v">1 (0)</td></tr>
+        <tr><td><strong>Your whole site, for comparison</strong></td><td class="v">&nbsp;</td><td class="v">12,386 (11,543)</td><td class="v">145 (88)</td></tr>
       </table>
-      <!-- CAVEAT:click-attribution --><div class="note" style="padding:10px 18px 2px;">Two honest limits here. We measured your July ocean figure a different way, so we are not putting the two side by side and calling it a change; from here on every month uses the columns above. And this table can only see Google. A zero in the last column means nobody clicked <em>from a Google results page</em>. It does not mean nobody reached you: when an assistant names you and somebody comes straight to your shop, Google never sees that visit. Your own site analytics catch part of it, the people who click straight through from an assistant. But plenty of people read the answer and then simply type your shop name into their browser, and that arrives looking identical to somebody who already knew you. So this is genuinely hard to count, and anyone who tells you they can measure it precisely is selling something. A lot of assistant-driven traffic lands in that direct bucket, which means the effect of being named is almost certainly larger than any number here can show, not smaller.</div><!-- /CAVEAT -->
+      <!-- CAVEAT:click-attribution --><div class="note" style="padding:10px 18px 2px;">Two honest limits here. Your spot is the steadier number to watch. Listing counts rise and fall with how many people search those exact words that month, which is why two of them fell while your spots held or improved. And this table can only see Google. A zero in the last column means nobody clicked <em>from a Google results page</em>. It does not mean nobody reached you: when an assistant names you and somebody comes straight to your shop, Google never sees that visit. Your own site analytics catch part of it, the people who click straight through from an assistant. But plenty of people read the answer and then simply type your shop name into their browser, and that arrives looking identical to somebody who already knew you. So this is genuinely hard to count, and anyone who tells you they can measure it precisely is selling something. A lot of assistant-driven traffic lands in that direct bucket, which means the effect of being named is almost certainly larger than any number here can show, not smaller.</div><!-- /CAVEAT -->
 
       <div class="watch">
-        <p><strong>The big one: one door is wide open and the other is shut, on the same page.</strong> Assistants name your Wave Stacking Rings every single time we ask. Google has that same page sitting 29th, where it was shown 241 times last month and not one of them opened it. Same page, same month. Shoppers who ask an assistant are already finding that page. Shoppers who type into Google effectively cannot.</p>
-        <p><strong>Mountain is your strongest theme, and it is holding.</strong> 12th place on &ldquo;silver mountain jewelry&rdquo;, with real searching behind it. That is the top of page two, one good push from page one.</p>
-        <p><strong>Ocean is your biggest opening.</strong> People are searching for ocean jewelry about thirty different ways, and your collection showed up 421 times this month. Almost all of those were past 45th place, so nobody sees it. The wanting is proven. The page is not yet strong enough to meet it.</p>
-        <p><strong>Two blog posts are carrying your search traffic:</strong> the one on keeping a necklace clasp in back, and the one on adjustable rings. Between them they were seen 2,984 times, more than the whole rest of your site put together. That makes them the most valuable place you have to point a reader next.</p>
+        <p><strong>The big one still holds: one door is wide open and the other is shut, on the same page.</strong> Assistants name your Wave Stacking Rings every single time we ask. Google has that same page 33rd, where it was shown 256 times this month and opened once. Shoppers who ask an assistant are finding that page. Shoppers who type into Google mostly are not.</p>
+        <p><strong>Mountain is your strongest theme, and it is holding.</strong> 12th place on &ldquo;silver mountain jewelry&rdquo; for the second month running. That is the top of page two, one good push from page one.</p>
+        <p><strong>Ocean is still your biggest opening.</strong> Your Ocean collection page showed up 178 times this month, usually around 35th place, where almost nobody scrolls. The wanting is there. The page is not yet strong enough to meet it.</p>
+        <p><strong>Your clasp guide is working harder than ever.</strong> The post on keeping a necklace clasp in back was seen 2,552 times and opened 63 times this month, the most of any page on your site. Your adjustable-rings post adds another 816. They are still the most valuable place you have to point a reader next.</p>
+        <p><strong>New this month: your Argentium guide loses its own question.</strong> When we ask assistants about some of your pieces, they often use your &ldquo;What is Argentium sterling silver&rdquo; post as a source. When we ask the exact question the post was written to answer, how Argentium is cared for and whether it tarnishes, they have not picked it once in three checks. So the page can be found; it just is not winning the question it exists for. On Google it showed up 393 times this month at around 24th place, with no clicks. This is the clearest next step I can see on your site, and I am happy to quote it if you would like it done.</p>
       </div>
-      <div class="note">We compare your rewritten pages against ones we left alone, so a rise reads as the work and not the season. One month is a direction, not a verdict. These are small numbers and we read them across several months. These assistant figures come from Perplexity. We check Google&rsquo;s Gemini too, and it names Pure Whimsy on nearly every question we ask, even on the pages we left alone. That is a good sign for how visible you are there. It also means Gemini cannot show us change, because there is no room left to climb, so we track movement on Perplexity.</div>
+      <div class="note">For your collection pages we compare themes that have a page against themes that do not, so a rise reads as the work and not the season. One month is a direction, not a verdict. These are small numbers and we read them across several months. The product-page and collection-page figures above come from Perplexity. We check Google&rsquo;s Gemini too. On product questions it names Pure Whimsy on nearly everything we ask, even the pages we left alone. That is a good sign for how visible you are there, and it also means Gemini cannot show change there, because there is no room left to climb. So we track movement on Perplexity and treat Gemini as a visibility check.</div>
     </div>
   </section>
 
@@ -254,15 +277,15 @@
       </div>
       <div class="bar"><i id="fill"></i></div>
       <p class="lead">These grow the work we have already done. Check them off as you go; your progress saves on this device.</p>
-      <label class="item"><input type="checkbox" data-id="n3"><span class="txt"><b>Send your two big guides to the matching collection pages</b><span class="d">Your necklace-clasp and adjustable-rings posts were listed 2,984 times between them, more than everything else on your site combined. A link from each to its matching collection page passes that momentum to the pages we built. Highest-value move on this list.</span></span></label>
-      <label class="item"><input type="checkbox" data-id="n2"><span class="txt"><b>Start with the pages that show up high but nobody opens</b><span class="d">Your Scroll Work Stacking Ring sits in the 6th spot for &ldquo;scroll work ring&rdquo; and gets no clicks from Google. People are being shown it and choosing not to click, which usually means the title and blurb in the results are not tempting enough. Pages like this are the fastest returns when you roll the model across your line, and the technical setup is already handled.</span></span></label>
+      <label class="item"><input type="checkbox" data-id="n3"><span class="txt"><b>Send your two big guides to the matching collection pages</b><span class="d">Your necklace-clasp and adjustable-rings posts were listed 3,368 times between them this month, and the clasp post was opened 63 times, the most of any page on your site. A link from each to its matching collection page passes that momentum to the pages we built. Highest-value move on this list.</span></span></label>
+      <label class="item"><input type="checkbox" data-id="n2"><span class="txt"><b>Start with the pages that show up high but nobody opens</b><span class="d">Your Scroll Work Stacking Ring showed up 196 times this month, around 10th place, and was opened once. People are being shown it and choosing not to click, which usually means the title and blurb in the results are not tempting enough. Pages like this are the fastest returns when you roll the model across your line, and the technical setup is already handled.</span></span></label>
       <label class="item"><input type="checkbox" data-id="n1"><span class="txt"><b>Tidy the catalog</b><span class="d">Even out the product types (&ldquo;Rings&rdquo; and &ldquo;rings,&rdquo; &ldquo;bracelet&rdquo;) and prune empty or duplicate collections, so your filters read cleanly for shoppers and for search.</span></span></label>
       </div>
   </section>
 
   <div class="foot">
     <div class="rp">Red Pin Geek</div>
-    Starting point July 2026 &nbsp;·&nbsp; first check-in 18 August 2026 &nbsp;·&nbsp; next update mid-September
+    Starting point July 2026 &nbsp;·&nbsp; first check-in 18 August 2026 &nbsp;·&nbsp; second check-in September 2026 &nbsp;·&nbsp; next update late October
   </div>
 </div>
 
